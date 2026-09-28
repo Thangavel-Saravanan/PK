@@ -1,0 +1,28 @@
+CREATE DATABASE IF NOT EXISTS praveenkrishmoo CHARACTER SET utf8mb4;
+USE praveenkrishmoo;
+CREATE TABLE IF NOT EXISTS products (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(150) NOT NULL,
+  price VARCHAR(30) NULL,
+  category VARCHAR(60) NOT NULL DEFAULT '',
+  video VARCHAR(500) NOT NULL DEFAULT '',
+  image_url TEXT NULL,
+  link TEXT NOT NULL,
+  store VARCHAR(60) NOT NULL,
+  clicks INT NOT NULL DEFAULT 0,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE IF NOT EXISTS product_links (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  product_id INT NOT NULL,
+  store VARCHAR(60) NOT NULL,
+  url TEXT NOT NULL,
+  clicks INT NOT NULL DEFAULT 0,
+  INDEX (product_id)
+);
+CREATE TABLE IF NOT EXISTS admin_account (
+  id TINYINT PRIMARY KEY,
+  username VARCHAR(60) NOT NULL,
+  password_hash VARCHAR(255) NOT NULL
+);
+INSERT IGNORE INTO admin_account (id, username, password_hash) VALUES (1, 'admin', '$2y$12$Ka6Z49atIntGLPDsT3TPLOmCtPa4pGTFRyDEjGI0sMtGN/i8r7mcK');
